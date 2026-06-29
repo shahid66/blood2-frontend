@@ -18,7 +18,7 @@ import {
   FaChevronLeft,
   FaChevronRight,
   FaHeartbeat,
-  FaHeartbeat, FaSpinner, FaTimes
+   FaTimes
 } from "react-icons/fa";
 import { toast } from "react-toastify";
 
