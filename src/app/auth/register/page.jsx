@@ -275,25 +275,19 @@ export default function RegisterPage() {
         >
           {/* Header */}
           <div className="text-center mb-8">
-            <Link href="/" className="inline-flex items-center gap-2 mb-3 group">
-              <motion.div whileHover={{ scale: 1.1 }} className="w-10 h-10 rounded-full bg-[#C62828]/10 flex items-center justify-center">
-                <FaHeart className="text-[#C62828] text-xl" />
-              </motion.div>
-              <span className="text-2xl font-black text-gray-900 tracking-tight">
-                <span className="text-[#C62828]">Blood</span>Bond
-              </span>
-            </Link>
-            <h1 className="text-3xl font-extrabold text-gray-900 tracking-tight">
-              Create Your Account
-            </h1>
-            <p className="mt-2 text-sm text-gray-500 max-w-md mx-auto">
-              Join our community of life-savers. Register as a blood donor today.
-            </p>
+        
+           
           </div>
 
           {/* Form Card */}
           <div className="bg-white rounded-2xl shadow-xl border border-gray-100 p-6 sm:p-10">
             <form onSubmit={handleSubmit} className="space-y-5">
+              <h1 className="text-3xl text-center font-extrabold text-gray-900 tracking-tight">
+              Create Your Account
+            </h1>
+            <p className="mt-2 text-sm text-gray-500 max-w-md mx-auto">
+              Join our community of life-savers. Register as a blood donor today.
+            </p>
               {/* Avatar Upload */}
               <div className="flex flex-col items-center gap-2 mb-4">
                 <div className="relative">
@@ -574,23 +568,21 @@ export default function RegisterPage() {
 
             {/* Divider */}
             <div className="relative my-6">
-              <div className="absolute inset-0 flex items-center">
-                <div className="w-full border-t border-gray-100" />
-              </div>
-              <div className="relative flex justify-center text-xs uppercase tracking-wider font-semibold">
-                <span className="bg-white px-4 text-gray-400">
+              
+             
+              <span className="bg-white px-4 text-gray-400">
                   Already have an account?
-                </span>
-              </div>
-            </div>
-
-            {/* Login Link */}
-            <Link
+                  <Link
               href="/auth/signin"
-              className="block w-full py-3 border-2 border-gray-200 text-gray-700 font-semibold text-sm rounded-xl hover:border-[#C62828] hover:text-[#C62828] transition-all duration-300 text-center"
+              className=" py-3   text-gray-700 font-semibold text-sm  hover:border-[#C62828] hover:text-[#C62828] transition-all duration-300 text-center"
             >
               Login to Your Account
             </Link>
+                </span>
+            </div>
+
+            {/* Login Link */}
+            
           </div>
 
         </motion.div>
