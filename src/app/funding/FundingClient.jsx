@@ -18,6 +18,7 @@ import {
   FaChevronLeft,
   FaChevronRight,
   FaHeartbeat,
+  FaHeartbeat, FaSpinner, FaTimes
 } from "react-icons/fa";
 import { toast } from "react-toastify";
 
@@ -327,50 +328,62 @@ export default function FundingClient({ currentUserId }) {
       {/* ── RESPONSIVE FUNDING MODAL ── */}
       {isModalOpen && (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 backdrop-blur-sm p-4">
-          <div className="bg-white rounded-xl shadow-2xl w-full max-w-lg sm:max-w-xl p-6 animate-in fade-in zoom-in duration-200 max-h-[90vh] overflow-y-auto">
-            <h3 className="text-xl font-bold text-gray-900 mb-1 inline-flex items-center gap-2">
-              <FaHeartbeat className="text-red-600 text-2xl" />
-              <span className="text-xl font-bold text-gray-800">
-                <span className="text-red-600">Blood</span>Sync
-              </span>
-            </h3>
-            <p className="text-sm text-gray-500 mb-4">
-              Enter the amount you wish to donate securely.
-            </p>
+  <div className="bg-white rounded-xl shadow-2xl w-full max-w-lg sm:max-w-xl p-6 animate-in fade-in zoom-in duration-200 max-h-[90vh] overflow-y-auto relative">
 
-            <div className="mb-4">
-              <label className="block text-sm font-medium text-gray-700 mb-1">
-                Donation Amount ($)
-              </label>
-              <input
-                type="number"
-                min="1"
-                value={donationAmount}
-                onChange={(e) =>
-                  setDonationAmount(parseFloat(e.target.value) || 0)
-                }
-                className="w-full px-3 py-2 border border-gray-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-red-500 focus:border-transparent"
-              />
-            </div>
+    {/* Close Button */}
+    <button
+      onClick={() => setIsModalOpen(false)}
+      className="absolute top-4 right-4 p-2 rounded-full text-gray-500 hover:text-red-600 hover:bg-red-50 transition-colors"
+      aria-label="Close Modal"
+    >
+      <FaTimes className="text-lg" />
+    </button>
 
-            {isLoadingSecret ? (
-              <div className="flex justify-center py-4">
-                <FaSpinner className="animate-spin text-red-600 text-2xl" />
-              </div>
-            ) : (
-              clientSecret && (
-                <Elements stripe={stripePromise} options={{ clientSecret }}>
-                  <CheckoutForm
-                    userId={currentUserId}
-                    amount={donationAmount}
-                    onSuccess={handlePaymentSuccess}
-                    onCancel={() => setIsModalOpen(false)}
-                  />
-                </Elements>
-              )
-            )}
-          </div>
-        </div>
+    <h3 className="text-xl font-bold text-gray-900 mb-1 inline-flex items-center gap-2">
+      <FaHeartbeat className="text-red-600 text-2xl" />
+      <span className="text-xl font-bold text-gray-800">
+        <span className="text-red-600">Blood</span>Bond
+      </span>
+    </h3>
+
+    <p className="text-sm text-gray-500 mb-4">
+      Enter the amount you wish to donate securely.
+    </p>
+
+    <div className="mb-4">
+      <label className="block text-sm font-medium text-gray-700 mb-1">
+        Donation Amount ($)
+      </label>
+
+      <input
+        type="number"
+        min="1"
+        value={donationAmount}
+        onChange={(e) =>
+          setDonationAmount(parseFloat(e.target.value) || 0)
+        }
+        className="w-full px-3 py-2 border border-gray-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-red-500 focus:border-transparent"
+      />
+    </div>
+
+    {isLoadingSecret ? (
+      <div className="flex justify-center py-4">
+        <FaSpinner className="animate-spin text-red-600 text-2xl" />
+      </div>
+    ) : (
+      clientSecret && (
+        <Elements stripe={stripePromise} options={{ clientSecret }}>
+          <CheckoutForm
+            userId={currentUserId}
+            amount={donationAmount}
+            onSuccess={handlePaymentSuccess}
+            onCancel={() => setIsModalOpen(false)}
+          />
+        </Elements>
+      )
+    )}
+  </div>
+</div>
       )}
     </>
   );
